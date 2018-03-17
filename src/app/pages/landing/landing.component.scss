@@ -1,0 +1,42 @@
+.standard-image {
+    width: 160px;
+    height: 160px;
+}
+img {
+    vertical-align: middle;
+    border-width: 0px;
+    border-style: initial;
+    border-color: initial;
+    border-image: initial;
+}
+.landing-page {
+    .jumbotron {
+        margin-bottom: 10px;
+        margin-top: 30px;
+        .lead {
+            a {
+                cursor: pointer;
+            }
+        }
+        p {
+            font-size: 14px;
+            font-weight: normal;
+            margin-bottom: inherit;
+            padding-top: 15px;
+        }
+    }
+    > div {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+@media only screen and (max-width: 991px) {
+    .jumbotron {
+        text-align: center;
+    }
+}
+@media only screen and (min-width: 992px) {
+    .jumbo-blue p.image {
+        float: right;
+    }
+}

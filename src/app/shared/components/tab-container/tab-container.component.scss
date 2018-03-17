@@ -1,0 +1,14 @@
+.tab-container{
+    ul {
+        .tab-header-item {
+            &.selected {
+                a {
+                    color: #48b0f7;
+                    span {
+                        border-bottom: solid 1px #48b0f7;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,19 @@
+<h3>Party Planner</h3>
+<filter-select
+  (updateFilter)="updateFilter($event)"
+>
+</filter-select>
+
+<person-input
+  (addPerson)="addPerson($event)"
+>
+</person-input>
+
+<person-list
+  [people]="people | async"
+  (addGuest)="addGuest($event)"
+  (removeGuest)="removeGuest($event)"
+  (removePerson)="removePerson($event)"
+  (toggleAttending)="toggleAttending($event)"
+>
+</person-list>

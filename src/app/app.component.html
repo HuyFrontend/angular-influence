@@ -1,0 +1,7 @@
+<app-loading-bar></app-loading-bar>
+<!-- <div class="page-container {{isShowNavigation}}" [ngClass]="{'mobile-navigation':isShowNavigation}" > -->
+<div class="page-container">
+	<app-header #appHeader ></app-header>
+	<ui-view></ui-view>
+	<app-footer></app-footer>
+</div>

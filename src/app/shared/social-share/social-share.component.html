@@ -1,0 +1,10 @@
+<div class="share">
+  <ul class="">
+    <li>
+      <div class="text" [ngClass]="{'hidden': isHideLabel}">share</div>
+    </li>
+    <li><a title="Twitter share" (click)="shareTwitter()" [ngClass]="{'social-twitter': isHideLabel}"><i class="fa fa-twitter"></i></a></li>
+    <li><a title="Facebook share" (click)="shareFacebbok()" [ngClass]="{'social-facebook': isHideLabel}"><i class="fa fa-facebook"></i></a></li>
+    <li><a title="Google Plus share" (click)="shareGooglePlus()" [ngClass]="{'social-google-plus': isHideLabel}"><i class="fa fa-google-plus"></i></a></li>
+  </ul>
+</div>

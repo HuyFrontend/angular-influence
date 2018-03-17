@@ -1,0 +1,5 @@
+<div class="btn-group select-category" data-toggle="buttons">
+    <label class="btn btn-complete" *ngFor="let item of listMulti" [class.active]="thisItem.checked">
+        <input type="checkbox" id="{{item.id}}" on-change="selectCategory(item.id, thisItem)" #thisItem>{{item.name}}
+    </label>
+</div>

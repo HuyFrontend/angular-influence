@@ -1,0 +1,25 @@
+.list {
+    margin-top: 20px;
+
+    .campaign-item {
+        padding-bottom: 10px;
+        padding-top: 10px;
+        border-top: solid 1px #DDDDDD;
+        &:last-child {
+            border-bottom: solid 1px #DDDDDD;
+        }
+        .campaign-element-info {
+            .caption{
+                padding-top: 5px;
+                .caption-subject {
+                    cursor: pointer;
+                    font-weight: bold;
+                }
+                &:focus, &:hover, &:active {
+                    color: #48b0f7
+                }
+            }
+
+        }
+    }
+}

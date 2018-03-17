@@ -1,0 +1,23 @@
+
+  <div class="widget-10 panel no-border bg-white no-margin widget-loader-bar">
+    <div class="panel-heading top-left top-right ">
+      <div class="panel-title text-black hint-text title">
+        <span class="font-montserrat fs-11 all-caps"> {{ budgetInfo.title }} </span>
+      </div>
+      <div class="panel-controls">
+        <ul>
+          <li><a data-toggle="refresh" class="portlet-refresh text-black"><i class="portlet-icon portlet-icon-refresh"></i></a> </li>
+        </ul>
+      </div>
+    </div>
+    <div class="panel-body p-t-40">
+      <div class="row">
+        <div class="col-sm-12">
+          <h4 class="no-margin p-b-5 text-primary semi-bold">MYR {{ budgetInfo.amount | currencyFixedTwo }}</h4>
+          <div class="pull-left small"> <span>Pending</span> <span class=" text-success font-montserrat"> <i class="fa fa-caret-up m-l-10"></i> {{ budgetInfo.pending }}% </span> </div>
+          <div class="pull-left m-l-20 small"> <span>Spent</span> <span class=" text-primary font-montserrat"> <i class="fa fa-caret-up m-l-10"></i> {{ budgetInfo.spent }}% </span> </div>
+          <div class="clearfix"></div>
+        </div>
+      </div>
+    </div>
+  </div>

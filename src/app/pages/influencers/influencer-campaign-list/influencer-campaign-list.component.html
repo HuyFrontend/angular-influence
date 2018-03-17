@@ -1,0 +1,109 @@
+<div class="page-content-wrapper">
+	<div class="content">
+		<div class="jumbotron" data-pages="parallax">
+			<div class="container-fluid container-fixed-lg sm-p-l-20 sm-p-r-20">
+				<div class="inner" style="transform: translateY(0px); opacity: 1;">
+					
+					<!-- START BREADCRUMB -->
+					<ul class="breadcrumb">
+						<li *ngIf="!campaignType || campaignType==='discover'"> <a uiSref="influencerCampaignListPage" [uiParams]="{ type: 'discover' }">Discover campaigns</a> </li>
+						<li *ngIf="campaignType==='myown'"> <a uiSref="influencerCampaignListPage" [uiParams]="{ type: 'myown' }" >My campaigns</a> </li>
+						<li *ngIf="campaignType==='favorite'"> <a uiSref="influencerCampaignListPage" [uiParams]="{ type: 'favorite' }" >Favorite campaigns</a> </li>
+					</ul>
+					<!-- END BREADCRUMB -->
+				</div>
+			</div>
+		</div>
+
+		<div class="container-fluid">
+			<div class="page-content">
+				<div class="row ">
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 type-group">
+						<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+							Fashion
+						</div>
+						<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+							Beauty
+						</div>
+						<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+							Travel
+						</div>
+					</div>
+				</div>
+				<div class="row ">
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+						<div class="list campaigns">
+							<!-- <div class="campaign-item" *ngFor="let campaignItem of campaigns; let index = index;">
+								
+								<div class="row">
+									<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+										<div class="portlet-title campaign-element-info ">
+											<div class="row">
+												<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+													<div class="caption" data-toggle="collapse">
+														<span class="caption-subject" (click)="campaignDetails(campaignItem)">
+															{{campaignItem.Name}}
+														</span>
+														<span class="caption-helper"></span>
+													</div>
+												</div>
+												<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+													<div class="actions pull-right">
+														<a class="btn btn-green btn-circle details" (click)="campaignDetails(campaignItem)">
+															<i class="glyphicon glyphicon-eye-open"></i>
+														</a>
+														<a class="btn btn-red btn-circle" on-click="poupDeleteCampaign(campaignItem)">
+															<i class="glyphicon glyphicon-trash"></i>
+														</a>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div> -->
+							<!--  -->
+							<div class="row">
+								<div class="controls search-box col-xs-8 col-sm-8 col-md-6 col-lg-6">
+									<input type="text" placeholder="Search" class="form-control">
+								</div>
+								<div class="col-xs-4 col-sm-4 col-md-2 col-lg-2">
+									<button class="btn btn-complete btn-block btn-compose" >Search</button>
+								</div>
+							</div>
+							<div class="row item influence-item" *ngFor="let campaignItem of campaigns">
+								<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+									<img alt="image" class="img-thumbnail" src="{{imageDefault}}">
+								</div>
+								<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+									<div class="name">Name: {{campaignItem.Name}}</div>
+									<div class="name">Branch: Branch 1</div>
+									<div class="name">Categories: Fashion</div>
+								</div>
+								<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+									<div class="name">
+										<div class="name">Campaign Period: </div>
+										<div class="name">Token: $10</div>
+										<div class="name">Recruitment End Date: Jan. 20th 2018</div>
+										<div class="name" *ngIf="campaignType!=='favorite'"><a class="add-favorite link" (click)="confirmFavoriteCampaign(campaignItem)">Add to favorite</a></div>
+									</div>
+								</div>
+							</div>
+							<!--  -->
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+	
+<!-- Modal -->
+<app-modal-custom #confirmModal
+	(onConfirmed)="onAddFavoriteCampaign($event)">
+	<div class="app-modal-header">Add this campaign to favorite?</div>
+	<div class="app-modal-footer">
+		<button type="button" class="btn btn-primary" (click)="confirmModal.confirm()">Yes</button>
+		<button type="button" class="btn btn-default" (click)="confirmModal.hide()">No</button>
+	</div>
+</app-modal-custom>

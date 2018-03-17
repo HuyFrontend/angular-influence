@@ -1,0 +1,142 @@
+<div class="header-wrapper" #header>
+  <div class="header" *ngIf="!isHiddenHeader">
+    <div class="row">
+      <div class=" pull-left sm-table col-md-12 col-lg-12 no-padding-verticle">
+        <div class="header-inner col-md-12 col-lg-12">
+          <div class="p-t-5 no-padding-verticle block-logo">
+            <a  *ngIf="loginStatus" on-click="isShowNavigation=true" class="btn-link toggle-sidebar hidden-lg-up pg pg-menu" data-toggle="sidebar">
+            </a>
+            <div class="brand inline">
+              <a class="logo">
+                <img src="assets/img/logo.png" alt="logo" data-src="assets/img/logo.png" data-src-retina="assets/img/logo_2x.png" width="78" height="22" uiSref="homePage">
+              </a>
+            </div>
+          </div>
+          <div class=" pull-right avatar">
+            <div *ngIf="loginStatus">
+              <div class="pull-left p-t-15">
+                <ul class="notification-list no-margin b-grey b-l b-r no-style p-l-30 p-r-20">
+                  <li class="p-r-15 inline">
+                    <div class="dropdown influence-popup"> 
+                      <a #buttonClick on-click="notiPopup.show()" class="icon-set globe-fill show-notification" data-toggle="dropdown">
+                        <span class="bubble has-new-notifications"></span>
+                      </a>
+                      <app-popup #notiPopup [elementClick]="buttonClick">
+                        <app-notification [isOpen]="notiPopup.showPopup"></app-notification>
+                      </app-popup>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <div class="pull-left font-heading p-t-15 visible-lg visible-md visible-sm logged-name"> 
+                <span class="semi-bold">{{userInfo.name}}</span>
+              </div>
+              <div class="dropdown pull-right profile-dropdown">
+                <button #openProfile class="profile-dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" (click)="isOpenProfilePopup = !isOpenProfilePopup; profilePopup.showHide(isOpenProfilePopup)">
+                    <!-- <button #openProfile class="profile-dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" (click)="isOpenProfilePopup = !isOpenProfilePopup; profilePopup.showHide(openProfile, isOpenProfilePopup)"> -->
+                  <span class="thumbnail-wrapper d32 circular inline m-t-5">
+                    <img *ngIf="userInfo.avatar else defaultImage" [attr.src]="userInfo.avatar" alt="" [attr.data-src]="userInfo.avatar" width="32" height="32">
+                    <ng-template #defaultImage>
+                        <img src="assets/img/profiles/avatar_small2x.jpg" alt="" width="32" height="32">
+                    </ng-template>
+                  </span>
+                </button>
+                <app-popup #profilePopup [elementClick]="openProfile" (onToggleOutSide)="isOpenProfilePopup=!$event">
+                    <ul class="dropdown-menu profile-dropdown" role="menu">
+                      <li><a uiSref="profilePage" (click)="isOpenProfilePopup=false"><i class="pg-signals"></i> Edit Profile</a> </li>
+                      <li><a (click)="isOpenProfilePopup=false; isOpenCreditSub=!isOpenCreditSub;"><i class="pg-outdent"></i> Credit <span>$0.00</span></a>
+                        <ul class="sub-credit" [ngClass]="{'hide': !isOpenCreditSub,'': isOpenCreditSub }">
+                          <li><a uiSref="creditPage" >Top up</a></li>
+                          <li><a>Billing</a></li>
+                          <li><a>History</a></li>
+                        </ul>
+                      </li>
+                      <li class="bg-master-lighter"> <a class="clearfix logout" (click)="isOpenProfilePopup=false; logout()"> <span class="pull-left">Logout</span> <span class="pull-right"><i class="pg-power"></i></span> </a> </li>
+                  </ul>
+                </app-popup>
+              </div>
+            </div>
+          </div>
+          <!--  -->
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <!-- notification bar -->
+  <div class="notification-panel" *ngIf="notificationType">
+    <h5 class="{{notificationType}}">
+      <span class="notification-message">{{notificationMessage}}</span>
+    </h5>
+  </div>
+</div>
+
+<!-- left menu -->
+<div class="menu-bar" [class.open]="isShowNavigation" [class.loggedIn]="loginStatus">
+  
+  <!-- close menu btn onli show on mobile version -->
+  <a href="#" class="btn-link toggle-sidebar hidden-lg-up pg pg-close" data-toggle="hide-menu" (click)="isShowNavigation=false">
+  </a>
+
+  <!-- left menu items -->
+  <div class="new-campaign" *ngIf="userTypeID==2">
+    <li class="inline">
+      <button class="btn btn-complete btn-block btn-compose" uiSref="newCampaign" (click)="isShowNavigation=false">Create Campaign</button>
+    </li>
+  </div>
+
+  <ul class="menu-items scroll-content scroll-scrolly_visible list-unstyled">
+    <!-- merchant left item -->
+    <li class="menu-campaigns menu-item"  *ngIf="userTypeID==2">
+      <a uiSref="merchantCampaignListPage" [uiParams]="{ type: 'all' }" uiSrefActive="active" (click)="showAndHideSubmenu()">
+        <span class="title">All Campaigns</span>
+      </a>
+      <span class="icon-thumbnail"><i class="pg-calender"></i></span>
+      
+      <ul class="sub-menu" [ngClass]="{'hide': !isShowSubCampaignMenu, '': isShowSubCampaignMenu}">
+        <li>
+          <a class="sub-campaigns" uiSref="merchantCampaignListPage" [uiParams]="{ type: 'running' }" uiSrefActive="active" (click)="isShowNavigation=false"><span class="title">Running Campaigns</span></a>
+          <span class="icon-thumbnail"><i class="pg-contact_book"></i></span>
+        </li>
+
+        <li>
+          <a class="sub-campaigns" uiSref="merchantCampaignListPage" [uiParams]="{ type: 'completed' }" uiSrefActive="active" (click)="isShowNavigation=false"><span class="title">Completed Campaigns</span></a>
+          <span class="icon-thumbnail"><i class="pg-contact_book"></i></span>
+        </li>
+
+        <li>
+          <a class="sub-campaigns" uiSref="merchantCampaignListPage" [uiParams]="{ type: 'draft' }" uiSrefActive="active" (click)="isShowNavigation=false"><span class="title">Draft Campaigns</span></a>
+          <span class="icon-thumbnail"><i class="pg-contact_book"></i></span>
+        </li>
+      </ul>
+    </li>
+    <li class="menu-dashboard menu-item"  *ngIf="userTypeID==2">
+      <a uiSref="merchantCampaignListPage" uiSrefActive="active" (click)="isShowNavigation=false"><span class="title">Dashboard</span></a>
+      <span class="icon-thumbnail"><i class="pg-home"></i></span>
+    </li> 
+
+    <!-- influencers left items -->
+    <li class="menu-campaigns menu-item"  *ngIf="userTypeID==1">
+      <ul class="sub-menu">
+        <li>
+          <a class="sub-campaigns" uiSref="influencerCampaignListPage" [uiParams]="{ type: 'myown' }" uiSrefActive="active" (click)="isShowNavigation=false">
+            <span class="title">My Campaigns</span>
+          </a>
+          <span class="icon-thumbnail"><i class="pg-contact_book"></i></span>
+        </li>
+
+        <li>
+          <a class="sub-campaigns" uiSref="influencerCampaignListPage" [uiParams]="{ type: 'favorite' }" uiSrefActive="active" (click)="isShowNavigation=false">
+            <span class="title">Favorite Campaigns</span></a>
+          <span class="icon-thumbnail"><i class="pg-contact_book"></i></span>
+        </li>
+        <li>
+          <a class="sub-campaigns" [ngClass]= "{'active selected': getCampaignType() === 'discover'}" uiSref="influencerCampaignListPage" [uiParams]="{ type: 'discover' }" uiSrefActive="active" (click)="isShowNavigation=false">
+            <span class="title">Discover Campaigns</span>
+          </a>
+          <span class="icon-thumbnail"><i class="pg-contact_book"></i></span>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>

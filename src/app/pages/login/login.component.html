@@ -1,0 +1,78 @@
+<!-- <div class="error-notification-panel container notification-panel ng-scope">
+    <h5 class="displayErrorMessage displayMessageNotice  notice">000 - UserName is mandatory</h5>
+</div> -->
+<div class="login-wrapper ">
+      <!-- START Login Background Pic Wrapper-->
+      <div class="bg-pic">
+        <!-- START Background Pic-->
+        <img src="assets/img/demo/new-york-city-buildings-sunrise-morning-hd-wallpaper.jpg" data-src="assets/img/demo/new-york-city-buildings-sunrise-morning-hd-wallpaper.jpg" data-src-retina="assets/img/demo/new-york-city-buildings-sunrise-morning-hd-wallpaper.jpg" alt="" class="lazy">
+        <!-- END Background Pic-->
+        <!-- START Background Caption-->
+        <div class="bg-caption pull-bottom sm-pull-bottom text-white p-l-20 m-b-20">
+          <h2 class="semi-bold text-white">
+					Most favourite inFluencer marketing in Malaysia</h2>
+          <p class="small">
+            Copyright iFLuence, © 2017 MY.
+          </p>
+        </div>
+        <!-- END Background Caption-->
+      </div>
+      <!-- END Login Background Pic Wrapper-->
+      
+      <!-- START Login Right Container-->
+      <div class="login-container bg-white">
+        <div class="p-l-50 m-l-20 p-r-50 m-r-20 p-t-50 m-t-30 sm-p-l-15 sm-p-r-15 sm-p-t-40">
+          <img src="assets/img/logo.png" alt="logo" data-src="assets/img/logo.png" data-src-retina="assets/img/logo_2x.png" width="78" height="22">
+          
+          <p class="p-t-35">Sign into your pages account</p>
+          <!-- START Login Form -->
+          <form id="form-login" class="p-t-15 form-login" role="form" #form [formGroup]="loginForm" (ngSubmit)="login(loginForm)">
+            <!-- START Form Control-->
+            <div class="form-group form-group-default required" [class.has-error]="(loginForm.controls.username.invalid && loginForm.controls.username.dirty) || (isSubmit && loginForm.controls.username.invalid)">
+              <label>Login</label>
+              <div class="controls">
+                <input type="text" placeholder="User Name" class="form-control" required [(ngModel)]="loginModel.UserName" formControlName="username" appNospaceValidator>
+              </div>
+            </div>
+            <label *ngIf="(loginForm.controls.username.invalid && (isSubmit || loginForm.controls.username.dirty))" class="error" for="username">This field is required.</label>
+            
+            <!-- END Form Control-->
+            <!-- START Form Control-->
+            <div class="form-group form-group-default required" [class.has-error]="(loginForm.controls.password.invalid && (isSubmit || loginForm.controls.password.dirty))">
+              <label>Password</label>
+              <div class="controls">
+                <input type="password" class="form-control" placeholder="Credentials" required [(ngModel)]="loginModel.Password" formControlName="password" appNospaceValidator>
+              </div>
+            </div>
+            <label *ngIf="(loginForm.controls.password.invalid && loginForm.controls.password.dirty) || (isSubmit && loginForm.controls.password.invalid)" class="error" for="password">This field is required.</label>
+            <!-- START Form Control-->
+            <div class="row">
+              <div class="col-md-6 no-padding">
+                <div class="checkbox">
+                  <input type="checkbox" value="1" id="checkbox1">
+                  <label for="checkbox1">Keep Me Signed in</label>
+                </div>
+              </div>
+              <!-- <div class="col-md-6 text-right">
+                <a href="#" class="text-info">Help? Contact Support</a>
+              </div> -->
+            </div>
+            <!-- END Form Control-->
+            <button class="btn btn-primary btn-cons m-t-10" type="submit">Sign in</button>
+          </form>
+          <!--END Login Form-->
+          <div class="create-user"><p>New user? <a uiSref="registerPage">Sign up here</a></p></div>
+          <div class="sm-pull-bottom">
+            <div class="no-padding m-t-10">
+              <p><small> If you have a facebook account, log into it for this process. Sign in with 
+                <app-facebook-auth></app-facebook-auth> 
+                or <a href="#" class="text-info">Google</a></small>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- END Login Right Container-->
+    </div>
+    <!-- <p><small> If you have a facebook account, log into it for this process. Sign in with 
+    <a href="#" class="text-info">Facebook</a> or <a href="#" class="text-info">Google</a></small> -->

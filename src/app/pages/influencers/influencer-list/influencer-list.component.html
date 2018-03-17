@@ -1,0 +1,98 @@
+<div class="page-content-wrapper">
+  <div class="content">
+      <div class="jumbotron" data-pages="parallax">
+          <div class="container-fluid container-fixed-lg sm-p-l-20 sm-p-r-20">
+              <div class="inner" style="transform: translateY(0px); opacity: 1;">
+                  
+                  <!-- START BREADCRUMB -->
+                  <ul class="breadcrumb">
+                      <li> <a href="#">Dashboard</a> </li>
+                      <li><a href="#" class="active">Influencers</a> </li>
+                  </ul>
+                  <!-- END BREADCRUMB -->
+              </div>
+          </div>
+      </div>
+
+      <div class="container-fluid">
+          <div class="page-content available-influencers">
+              <div class="row ">
+                  <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+                      <h4 class="title">
+                        <span>Hello, {{loginInfo.Name}}!</span> <br>
+                        <span>We have {{ availableInfluencers.length }} influencers matches your interest for all your campaigns</span>
+                      </h4>
+                  </div>
+                  <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                      <h4>Budget remaining</h4>
+                      <h5 *ngIf="loginInfo.UserUsage">
+                        <span>{{loginInfo.UserUsage.RemainingInfluencer || 0}} Remaining influencer(s)</span> <br/>
+                        <span>{{loginInfo.UserUsage.RemainingPosting || 0}} Remaining posting(s)</span> <br/>
+                        <span>{{loginInfo.UserUsage.RemainingAllowedCampaign || 0}} Remaining allowed campaign(s)</span> <br/>
+                      </h5>
+                  </div>
+              </div>
+              <div class="row ">
+                  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                      <div class="list clearfix">
+                          <h4 class="title">
+                            <span>Available Influencers</span>
+                          </h4>
+                          <div class="influencer-item" *ngFor="let influencer of availableInfluencers">
+                            <div class="row">
+                              <!-- image -->
+                              <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3">
+                                <img class="thumbnail img influencer-img" *ngIf="influencer.UserPhoto && influencer.UserPhoto.length else noImage" src="{{getImgSrc(influencer.UserPhoto[0]['Url'])}}" alt="">
+                                <ng-template #noImage>
+                                    <img class="thumbnail img influencer-img" src="assets/img/noimage150x150.png" alt="">
+                                </ng-template>
+                              </div>
+                              <!-- name, job, dob, gender ... -->
+                              <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3">
+                                <div *ngIf="influencer.Name"><span class="bold">{{influencer.Name}}</span> <br></div>
+                                <div *ngIf="influencer.Profession"><span>{{influencer.Profession}}</span> <br></div>
+                                <div *ngIf="influencer.Dob"><span>{{influencer.Dob}}</span> <br></div>
+                                <div *ngIf="influencer.Gender"><span>{{influencer.Gender}}</span> <br></div>
+                                <div *ngIf="influencer.Location"><span>{{influencer.Location}}</span> <br></div>
+                                <div *ngIf="influencer.Country"><span>{{influencer.Country}}</span> <br></div>
+                                <div *ngIf="influencer.UserInfluence"><span>{{influencer.UserInfluence.TotalSuccessfulCampaign || '0'}} Success campaign(s)</span></div>
+                              </div>
+
+                              <!-- facebook, twitter, instagram -->
+                              <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                                <div>
+                                  <span class="bold">Facebook: </span>
+                                  <span>{{influencer.UserInfluence && influencer.UserInfluence.TotalFollowerFb ? influencer.UserInfluence.TotalFollowerFb : 0}} follower(s)</span></div>
+                                
+                                <div>
+                                  <span class="bold">Instagram: </span>
+                                  <span>{{influencer.UserInfluence && influencer.UserInfluence.TotalFollowerInstagram ? influencer.UserInfluence.TotalFollowerInstagram : 0}} follower(s)</span></div>
+                              </div>
+                              <!-- author -->
+                              <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                                <div> 
+                                  <span class="bold">Page Authority: </span>
+                                  <span>{{influencer.UserInfluence && influencer.UserInfluence.PageAuthority ? influencer.UserInfluence.PageAuthority : 0}}%</span></div>
+                                
+                                <div>
+                                  <span class="bold">Rank: </span>
+                                  <span>{{influencer.UserInfluence && influencer.UserInfluence.PageRank ? influencer.UserInfluence.PageRank : 0}}%</span></div>
+                                
+                                <div>
+                                  <span class="bold">Reply Ration: </span>
+                                  <span>{{influencer.UserInfluence && influencer.UserInfluence.ReplyRatio ? influencer.UserInfluence.ReplyRatio : 0}}%</span></div>
+                                
+                                <div>
+                                  <span class="bold">Average Shared: </span>
+                                  <span>{{influencer.UserInfluence && influencer.UserInfluence.AverageShared ? influencer.UserInfluence.AverageShared : 0}}%</span></div>
+                              </div>
+                            </div>
+
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>

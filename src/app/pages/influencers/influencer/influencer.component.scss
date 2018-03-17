@@ -1,0 +1,22 @@
+.budget-list {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.table-list {
+    thead {
+        tr {
+            th {
+                text-align: center;
+            }
+        }
+    }
+    td.desc {
+        min-width: 150px;
+    }
+}
+.tab-pane {
+    .no-data {
+        text-align: center;
+        padding-top: 10px;
+    }
+}

@@ -1,0 +1,173 @@
+<div class="page-content-wrapper">
+    <div class="content">
+        <div class="email-wrapper">
+            <div class="jumbotron" data-pages="parallax">
+                <div class="container-fluid container-fixed-lg sm-p-l-20 sm-p-r-20">
+                    <div class="inner" style="transform: translateY(0px); opacity: 1;">
+                        <!-- START BREADCRUMB -->
+                        <ul class="breadcrumb">
+                            <li> <a uiSref="homePage">Dashboard</a> </li>
+                            <li><a uiSref="profilePage" class="active">Profile</a> </li>
+                        </ul>
+                        <!-- END BREADCRUMB -->
+                    </div>
+                </div>
+            </div>
+            
+            <div class="container-fluid">
+                <div class="col-xs-12 col-sm-12">
+                    <div class="container-fluid bg-white">
+                        <div class="panel panel-transparent">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <h4>Profile</h4>
+                                    <form role="form" class="profile form" #f="ngForm" (ngSubmit)="onSubmit(f)">
+                                        
+                                        <app-image-formfield [imageSrc]="imageSrc" (onImageChanged)="onImageChanged($event)"></app-image-formfield>
+                                        <br>
+                                        <br>
+                                        
+                                        <p class="group-title">Virtual Credit</p>
+                                        <div class="col-xs-12">
+                                            <p>Balance : {{0}}</p>
+                                            <p>Previous Checkout : {{0}}</p>
+                                            <p>Next Checkout Date</p>
+                                        </div>
+
+                                        <p class="group-title">Interest Tag</p>
+                                        <app-category (onSelectedMulti)="getselectedInterests($event)" [listMulti]="allInterest" [listSelectedInit]="initInterests"></app-category>
+                                        <!-- account information -->
+                                        <p class="group-title">Account Information</p>
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-6">
+                                                <div class="form-group">
+                                                    <label>Name</label>
+                                                    <input type="text" class="form-control" name="Name" [(ngModel)]="user.Name">
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-6">
+                                                <div class="form-group">
+                                                    <label>Password</label>
+                                                    <input type="text" class="form-control" placeholder="******" name="Password" >
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-6">
+                                                <div class="form-group">
+                                                    <label>Email</label>
+                                                    <input type="email" class="form-control" placeholder="" name="Email" [(ngModel)]="user.Email">
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-3">
+                                                <div class="form-group">
+                                                    <label>DOB</label>
+                                                    <input type="text" class="form-control" placeholder="04/10/1983" name="dob" [(ngModel)]="user.Dob">
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-3">
+                                                <div class="form-group">
+                                                    <label>Phone</label>
+                                                    <input type="phone" class="form-control" placeholder="eg. 0102264849" name="Mobile" [(ngModel)]="user.Mobile">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+
+                                        <!-- profile information -->
+                                        <p class="group-title">Profile Information</p>
+                                        <div class="row">
+                                            <p class="col-xs-12 field-title">Gender</p>
+                                            <div class="col-xs-12">
+                                                <div class="radio radio-success">
+                                                    <input type="radio" value="Male" name="gender" id="male" [(ngModel)]="user.Gender">
+                                                    <label for="male">Male</label>
+                                                    <input type="radio" checked="checked" value="Female" name="gender" id="female" [(ngModel)]="user.Gender">
+                                                    <label for="female">Female</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-12">
+                                                <div class="form-group">
+                                                    <label>Profession</label>
+                                                    <input type="text" class="form-control" placeholder="eg. Developer" name="Profession" [(ngModel)]="user.Profession">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-12">
+                                                <div class="form-group">
+                                                    <label>Summary</label>
+                                                    <textarea class="form-control" rows="3" name="Summary" [(ngModel)]="user.Summary"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                                                <div class="form-group">
+                                                    <label>Country</label>
+                                                    <input type="text" class="form-control" placeholder="eg. Malaysia" name="country" [(ngModel)]="user.Country">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12 col-sm-6 col-md-6 col-lg-6">
+                                                <div class="form-group">
+                                                    <label>Location</label>
+                                                    <input type="text" class="form-control" placeholder="eg. Selangor, Suban Jaya" name="location" [(ngModel)]="user.Location">
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                                                <div class="form-group">
+                                                    <label>Language</label>
+                                                    <input type="text" class="form-control" placeholder="eg. English" name="language" [(ngModel)]="user.Languange">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- banking information -->
+
+                                        <p class="group-title">Bank Account Information</p>
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-6">
+                                                <div class="form-group">
+                                                    <label>Preferred Bank Name</label>
+                                                    <input type="text" class="form-control" placeholder="eg. Maybank" name="PreferredBankName" [(ngModel)]="user.PreferredBankName">
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-6">
+                                                <div class="form-group">
+                                                    <label>Preferred Acc No</label>
+                                                    <input type="text" class="form-control" placeholder="eg. 1234567890" name="PreferredBankNo" [(ngModel)]="user.PreferredBankNo">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-6">
+                                                <div class="form-group">
+                                                    <label>Preferred Acc Name</label>
+                                                    <input type="text" class="form-control" placeholder="eg. Jon Doel Max" name="PreferredAccName" [(ngModel)]="user.PreferredAccName">
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-6">
+                                                <div class="form-group">
+                                                    <label>Designation</label>
+                                                    <input type="text" class="form-control" placeholder="Progammer" name="Designation" [(ngModel)]="user.Designation">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-3 col-md-3 save save-profile">
+                                                <button class="btn btn-complete btn-block btn-compose" type="submit">Save</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <br>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

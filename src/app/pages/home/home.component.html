@@ -1,0 +1,6 @@
+<div [ngSwitch]="userTypeID">
+    <app-merchant-campaign-list *ngSwitchCase="2"></app-merchant-campaign-list>
+    <!-- <app-influencer *ngSwitchCase="1"></app-influencer> -->
+    <app-influencer-campaign-list *ngSwitchCase="1"></app-influencer-campaign-list>
+    <app-landing *ngSwitchCase="0"></app-landing>
+</div>

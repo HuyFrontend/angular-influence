@@ -1,0 +1,221 @@
+<div class="register-container full-height sm-p-t-30">
+      <div class="container-sm-height full-height">
+        <div class="row row-sm-height">
+          <div class="col-sm-12 col-sm-height col-middle">
+            <img src="assets/img/logo.png" alt="logo" data-src="assets/img/logo.png" data-src-retina="assets/img/logo_2x.png" width="78" height="22" uiSref="homePage">
+            <p>
+              <small>Create an account. If you have a facebook account, log into it for this process. Sign in with <a href="#" class="text-info">Facebook</a> or <a href="#" class="text-info">Google</a></small>
+            </p>
+            <form [formGroup]="registerForm" (ngSubmit)="onSubmit(registerForm)" id="form-register" class="p-t-15" role="form">
+              <!-- step 0 -->
+              <div formGroupName="registerStep0" class="account-info group step-0" [class.hide]="currentStep !== 0" [class.animate-left]="currentStep === 0 && tempStep === 1">
+                <!-- username -->
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="username form-group form-group-default required" [class.has-error]="(userName.invalid && (isSubmit || userName.dirty || userName.touched))">
+                      <label>Username</label>
+                      <div class="controls">
+                        <input type="text" name="userName" required 
+                          placeholder="Username" 
+                          class="form-control"
+                          formControlName="userName"
+                          [(ngModel)]="registerModel.UserLoginName"
+                          appNospaceValidator>
+                      </div>
+                    </div>
+                    <app-error-message [control]="userName" [isFormSubmit]="isSubmit"></app-error-message>
+                  </div>
+                </div>
+                <!-- email -->
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="form-group form-group-default required" [class.has-error]="(email.invalid && (email.dirty || isSubmit || email.touched))">
+                      <label>Email</label>
+                      <div class="controls">
+                        <input type="email" name="email" required
+                          placeholder="We will send loging details to you" 
+                          class="form-control"
+                          formControlName="email"
+                          [(ngModel)]="registerModel.Email"
+                          appEmailValidator>
+                      </div>
+                    </div>
+                    <app-error-message [control]="email" [isFormSubmit]="isSubmit"></app-error-message>
+                  </div>
+                </div>
+                <!-- password -->
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="form-group form-group-default required" [class.has-error]="(password.invalid && (password.dirty || isSubmit  || password.touched))">
+                      <label>Password</label>
+                      <div class="controls">
+                        <input type="password" name="pass" 
+                        placeholder="Minimum of 4 Charactors" 
+                        class="form-control" 
+                        formControlName="password"
+                        [(ngModel)]="registerModel.Password"
+                        required minlength="4" appNospaceValidator>
+                      </div>
+                    </div>
+                    <app-error-message [control]="password" [isFormSubmit]="isSubmit"></app-error-message>
+                  </div>
+                </div>
+                <!-- password confirm -->
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="form-group form-group-default required" [class.has-error]="( customError || passwordConfirm.invalid && ( passwordConfirm.dirty || isSubmit || passwordConfirm.touched))">
+                      <label>Confirm Password</label>
+                      <div class="controls">
+                        <input type="password" name="passwordConfirm" 
+                          placeholder="Minimum of 4 Charactors" 
+                          class="form-control" 
+                          formControlName="passwordConfirm"
+                          [(ngModel)]="registerModel.ConfirmPassword"
+                          required minlength="4" appNospaceValidator>
+                      </div>
+                    </div>
+                    <app-error-message [control]="passwordConfirm" [isFormSubmit]="isSubmit" [isShowCustomError]="isSubmit && customError" customMessage="Password not match"></app-error-message>
+                  </div>
+                </div>
+              </div>
+              <!-- step 1 -->
+              <div formGroupName="registerStep1" class="interests group step-1" [class.hide]="currentStep !== 1" [class.animate-left]="currentStep === 1 && tempStep === 2" [class.animate-right]="currentStep === 1 && tempStep === 0">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="form-group form-group-default required" [class.has-error]="(name.invalid && (isSubmit || name.dirty || name.touched))">
+                      <label>Name</label>
+                      <div class="controls">
+                        <input type="text" name="name" required 
+                          placeholder=" eg. Jon Doel" 
+                          class="form-control" 
+                          formControlName="name"
+                          [(ngModel)]="registerModel.Name">
+                      </div>
+                    </div>
+                    <app-error-message [control]="name" [isFormSubmit]="isSubmit"></app-error-message>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-4">
+                    <span class="semi-bold">Gender</span>
+                    <div class="radio radio-success">
+                      <input type="radio" 
+                        value="M" 
+                        name="gender" 
+                        id="male" 
+                        checked="checked" 
+                        formControlName="gender"
+                        [(ngModel)]="registerModel.Gender">
+                      <label for="male">Male</label>
+                      <input type="radio" 
+                        value="F" 
+                        name="gender" 
+                        id="female"
+                        formControlName="gender"
+                        [(ngModel)]="registerModel.Gender">
+                      <label for="female">Female</label>
+                    </div>
+                  </div>
+                </div>
+                <!-- date of birth -->
+                <!-- <div class="row">
+                  <div class="col-sm-12">
+                    <div class="form-group form-group-default">
+                      <label>Date of Birth</label>
+                      <div class="controls">
+                        <input type="text" name="birthDay"
+                          placeholder="eg. Your Birthday" 
+                          class="form-control" 
+                          formControlName="birthDay"
+                          [(ngModel)]="registerModel.Dob">
+                      </div>
+                    </div>
+                    <app-error-message [control]="birthDay" [isFormSubmit]="isSubmit"></app-error-message>
+                  </div>
+                </div> -->
+
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="form-group form-group-default">
+                      <label>Language</label>
+                      <div class="controls">
+                        <input type="text" name="language"
+                          placeholder="eg. English" 
+                          class="form-control" 
+                          formControlName="language"
+                          [(ngModel)]="registerModel.Language">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="form-group form-group-default">
+                      <label>Location</label>
+                      <div class="controls">
+                        <input type="text" name="location"
+                          placeholder="eg. Selangor, Subang Jaya" 
+                          class="form-control" 
+                          formControlName="location"
+                          [(ngModel)]="registerModel.Location"
+                          js-autolocation #autoLocation>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="form-group form-group-default">
+                      <label>Country</label>
+                      <div class="controls">
+                        <select class="cs-select cs-skin-slide cs-transparent form-control" data-init-plugin="cs-select" formControlName="country"
+                        [(ngModel)]="registerModel.Country">
+                          <option value="0">Select Country</option>
+                          <option *ngFor="let country of countryList" value="{{country.ccode}}">{{country.cname}}</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="form-group form-group-default">
+                      <label>About your self</label>
+                      <div class="controls">
+                        <input type="text" name="about"
+                          placeholder="eg. About youself" 
+                          class="form-control" 
+                          formControlName="about"
+                          [(ngModel)]="registerModel.About">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="form-group form-group-default">
+                      <label>Mobile Number</label>
+                      <div class="controls">
+                        <input type="text" name="mobiphone"
+                          placeholder="eg. +60122264099" 
+                          class="form-control" 
+                          formControlName="mobiphone"
+                          [(ngModel)]="registerModel.Phone">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              <button class="btn btn-cons m-t-10" type="button" *ngIf="currentStep!=0" on-click="previousStep()">Previous</button>
+              <button class="btn btn-primary btn-cons m-t-10" type="submit">Process</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>

@@ -1,0 +1,195 @@
+.logo {
+    cursor: pointer;
+}
+.dropdown .show-notification, .logout {
+	cursor: pointer;
+}
+
+.notification-panel h5 {
+    position: relative;
+    color: rgb(255, 255, 255);
+    padding: 1em 1em 1em 4em;
+    border-radius: 2px;
+    font-size: 12px;
+}
+
+// header-header
+.header-wrapper {
+    top: 0;
+	.notification-panel {
+        width: 100%;
+        border: none;
+    }
+    &.affix {
+        width: 100%;
+        z-index: 2000;
+        // top: 0;
+    }
+    .notification-toggle {
+        left: -380px;
+    }
+    .header {
+        padding: 0 0 0 0;
+    }
+    .header-inner {
+        .pull-right.avatar {
+            padding-right: 8px;
+            position: absolute;
+            right: 15px;
+            top: 0;
+        }
+        .pg-menu {
+            padding-left: 20px;
+        }
+        .logged-name {
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+    }
+}
+
+// navigation 
+.menu-bar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    background-color: #2b303b;
+    width: 270px;
+    left: -270px;
+    overflow-y: auto;
+    -webkit-transition: -webkit-transform 400ms cubic-bezier(0.05,0.74,0.27,0.99);
+    transition: transform 400ms cubic-bezier(0.05,0.74,0.27,0.99);
+    -webkit-backface-visibility: hidden;
+    -ms-backface-visibility: hidden;
+    -webkit-perspective: 1000;
+    flex-direction: column;
+    z-index: 10000;
+    padding-left: 10px;
+    padding-right: 10px;
+    .pg-close {
+       padding-top: 10px;
+       padding-left: 10px;
+    }
+    &.open {
+        -webkit-transform: translate3d(100%,0,0);
+        /* transform: translate3d(100%,0,0); */
+        -ms-transform: translate(100%,0);
+    }
+    .new-campaign {
+        text-align: center;
+        margin-top: 30px;
+        margin-bottom: 20px;
+    }
+    .menu-items {
+        li {
+            min-height: 45px;
+            
+            a {
+                cursor: pointer;
+                line-height: 40px;
+            }
+        }
+        .sub-menu {
+            padding-left: 20px;
+            >li {
+                &:first-child {
+                    margin-top: 5px;
+                }
+            }
+        }
+        .menu-campaigns {
+            .sub-campaigns {
+                &.active, &.selected {
+                    color: #FFFFFF;
+                }
+            }
+        }
+    }
+}
+
+// notification
+.notification-panel h5:before {
+    content: ' ';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 3em;
+    display: inline-block;
+    border-right: 1px solid transparent;
+}
+.notification-panel h5:after {
+    position: absolute;
+    top: 50%;
+    left: 1em;
+    min-width: 1.1em;
+    text-align: center;
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+// notice
+.header-wrapper .notification-panel .notice {
+    background: rgb(231, 76, 60);
+}
+.header-wrapper .notification-panel .notice:after {
+    content: "\f071";
+    font-family: 'Glyphicons Halflings';
+    content: "\e086";
+}
+.header-wrapper .notification-panel .notice:before {
+    border-right-color: #ea6153;
+}
+// success
+.header-wrapper .notification-panel .success {
+    background: #99CC99;
+}
+.header-wrapper .notification-panel .success:after {
+    content: "\f00c";
+}
+.header-wrapper .notification-panel .success:before {
+    border-right-color: #aad5aa;
+}
+// error
+.header-wrapper .notification-panel .error {
+    background: #F2777A;
+}
+.header-wrapper .notification-panel .error:before {
+    border-right-color: #f48e91;
+}
+.header-wrapper .notification-panel .error:after {
+    content: "\f00d";
+}
+// update
+.header-wrapper .notification-panel .update {
+    background: #6699CC;
+}
+.header-wrapper .notification-panel .update:before {
+    border-right-color: #79a6d2;
+}
+.header-wrapper .notification-panel .update:after {
+    content: "\f129";
+}
+
+@media screen and (min-width: 992px) {
+    .menu-bar {
+        &.loggedIn {
+            -webkit-transform: translate3d(100%,0,0);
+            transform: translate3d(100%,0,0);
+            -ms-transform: translate(100%,0);
+            top: 60px;
+            .pg-close {
+                display: none;
+            }
+        }
+    }
+    .header-wrapper {
+        .block-logo {
+            width: 270px;
+            text-align: center;
+            padding-top: 15px !important;
+        }
+    }
+}

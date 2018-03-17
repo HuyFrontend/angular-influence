@@ -1,0 +1,100 @@
+
+<div class="page-content-wrapper">
+	<div class="content">
+
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="container-fluid bg-white">
+						<div class="panel panel-transparent">
+						<div class="row">
+							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 ">
+								<h4>Campaign</h4>
+								<form role="form" class="form" #f="ngForm" (ngSubmit)="onSubmit(f)">
+									<div class="row">
+										<app-image-formfield [imageSrc]="imageSrc" ></app-image-formfield>
+									</div>
+									
+									<br><br>
+									<div class="row">
+										<div class="col-sx-12 col-sm-12 col-md-12 col-lg-12">
+											<div class="form-group" [class.has-error]="name.invalid && (name.dirty || name.touched || isSubmit)">
+												<label>Campaign name</label>
+												<input type="text" class="form-control" required name="name" [(ngModel)]="campaign.Name" #name="ngModel">
+											</div>
+										</div>
+									</div>
+									
+									<div class="row">
+										<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+											<div class="form-group">
+												<div><label>Budget</label></div>
+												<div class="row">
+													<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+														<app-budget-counter [counterValue]="campaign.NoOfInfluencer" [counterTitle]="'influencers'" (onCountingValue)="campaign.NoOfInfluencer=$event"></app-budget-counter>
+													</div>
+													<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+														<app-budget-counter [counterValue]="campaign.NoOfPosting" [counterTitle]="'posts'" (onCountingValue)="campaign.NoOfPosting=$event"></app-budget-counter>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="col-sx-12 col-sm-12 col-md-4 col-lg-4 price">
+											<div class="form-group" [class.has-error]="price.invalid && (price.dirty || price.touched || isSubmit)">
+												<label>Max Budget / Price (MYR)</label>
+												<input type="text" class="form-control" required name="price" [(ngModel)]="campaign.Price" required #price="ngModel">
+												<span>+5% charge</span>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+											<div class="form-group" [class.has-error]="description.invalid && (description.dirty || description.touched || isSubmit)">
+												<label>Descriptions</label>
+												<textarea class="form-control" rows="3" name="description" [(ngModel)]="campaign.Description" #description="ngModel" required></textarea>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-sx-12 col-sm-12 col-md-6 col-lg-6">
+											<div class="form-group">
+													<app-custom-picker
+														label="From"
+														dateFormat="dd/mm/yyyy"
+														[initDate]="initDateFrom"
+														[minDate]="initDateFrom"
+														(onSelectedDate)="onSelectedDate($event)"
+													>
+													</app-custom-picker>
+											</div>
+										</div>
+										<div class="col-sx-12 col-sm-12 col-md-6 col-lg-6">
+											<div class="form-group">
+													<app-custom-picker
+													label="To"
+													dateFormat="dd/mm/yyyy"
+													[initDate]="initDateTo"
+													[minDate]="initDateFrom"
+													(onSelectedDate)="onSelectedDateTo($event)"
+												>
+												</app-custom-picker>
+											</div>
+										</div>
+									</div>
+									
+									<!-- <app-category (onSelectedCategory)="getCategories($event)"></app-category> -->
+
+									<div class="btn-group col-md-12">
+										<div class="col-md-3 save-campaign">
+											<button class="btn btn-complete btn-block btn-compose" type="submit">Save</button>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,14 @@
+.type-group {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+.campaign-item, .influence-item {
+    margin-bottom: 10px;
+    .add-favorite.link {
+        cursor: pointer;
+    }
+}
+.search-box {
+    margin-bottom: 10px;
+}

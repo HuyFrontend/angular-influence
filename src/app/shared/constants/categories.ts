@@ -1,0 +1,28 @@
+export const categories = [
+    { id: 'art', name: 'Arts & Entertainment' },
+    { id: 'auto', name: 'Autos & Vehicles' },
+    { id: 'beauty', name: 'Beauty & Fitness' },
+    { id: 'books', name: 'Books & Literature' },
+    { id: 'business', name: 'Business & Industrial' },
+    { id: 'computers', name: 'Computers & Electronics' },
+    { id: 'finance', name: 'Finance' },
+    { id: 'food', name: 'Food & Drink' },
+    { id: 'games', name: 'Games' },
+    { id: 'hobbies', name: 'Hobbies & Leisure' },
+    { id: 'home', name: 'Home & Garrden' },
+    { id: 'internet', name: 'Internet & Telecom' },
+    { id: 'jobs', name: 'Jobs & Education' },
+    { id: 'law', name: 'Law & Goverment' },
+    { id: 'news', name: 'News' },
+    { id: 'online', name: 'Online Communities' },
+    { id: 'people', name: 'People & Society' },
+    { id: 'pets', name: 'Pet & Animals' },
+    { id: 'property', name: 'Property' },
+    { id: 'reference', name: 'Reference' },
+    { id: 'science', name: 'Science' },
+    { id: 'shopping', name: 'Shopping' },
+    { id: 'sports', name: 'Sports' },
+    { id: 'travel', name: 'Travel' },
+    { id: 'worrld', name: 'World Localities' }
+]
+

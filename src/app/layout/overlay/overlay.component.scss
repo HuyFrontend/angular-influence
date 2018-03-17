@@ -1,0 +1,23 @@
+.loading-block.show {
+    width: 100%;
+    background-color: black;
+    opacity: 0.75;
+    position: absolute;
+    top: 0;
+    height: 100%;
+    overflow: hidden;
+    z-index: 20000 !important;
+    position: fixed;
+    background: #000;
+    opacity: 0.35;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    z-index: 2000;
+}
+.loading-block .textMessage {
+    color: white;
+    margin-top: 45vh;
+}

@@ -1,0 +1,10 @@
+<div class="custom-picker">
+	<label>{{label}}</label>
+	<my-date-picker 
+		[options]="myDatePickerOptions"
+		[(ngModel)]="dateModel"
+		(dateChanged)="onDateChanged($event)"
+		name="myDate"
+	></my-date-picker>
+</div>
+<!-- name="mydate"  -->
